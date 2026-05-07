@@ -1,0 +1,122 @@
+# ========================
+# Java
+# ========================
+*.class
+*.jar
+*.war
+*.ear
+*.jmod
+*.jsp
+
+# ========================
+# Maven
+# ========================
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# ========================
+# Gradle
+# ========================
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.jar.sha256
+
+# ========================
+# IDE: IntelliJ IDEA
+# ========================
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# ========================
+# IDE: Eclipse
+# ========================
+.settings/
+.project
+.classpath
+.factorypath
+
+# ========================
+# IDE: VS Code
+# ========================
+.vscode/
+*.code-workspace
+
+# ========================
+# IDE: NetBeans
+# ========================
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# ========================
+# ОС
+# ========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux / Unix
+*~
+.cache/
+
+# ========================
+# Логи, временные файлы, дампы JVM
+# ========================
+*.log
+*.bak
+*.swp
+*.tmp
+.java-repl
+hs_err_pid*
+replay_pid*
+*.jfr
+
+# ========================
+# Отчёты тестов и покрытия кода
+# ========================
+test-output/
+surefire-reports/
+failsafe-reports/
+jacoco.exec
+jacoco/
+cobertura.ser
+coverage/
+
+# ========================
+#
+# ========================
+.env
+.env.*
+*.keystore
+*.jks
+*.p12
+*.pem
+secrets/
+config/local/
+docker-compose.override.yml
