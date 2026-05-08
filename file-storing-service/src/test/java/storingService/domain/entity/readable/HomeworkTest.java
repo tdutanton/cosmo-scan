@@ -26,14 +26,14 @@ public class HomeworkTest {
     homework = new Homework();
     homework.setId(1L);
     homework.setFileName("aaa.exe");
-    assertTrue(homework.hasExtension());
+    assertTrue(homework.hasName());
   }
 
   @Test
   void noExtension() {
     homework = new Homework();
     homework.setId(2L);
-    assertFalse(homework.hasExtension());
+    assertFalse(homework.hasName());
   }
 
 }
