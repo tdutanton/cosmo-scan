@@ -16,6 +16,7 @@ RUN ./gradlew bootJar -x test --no-daemon --no-build-cache
 
 # Run stage
 FROM eclipse-temurin:21-jre-alpine
+RUN apk add --no-cache wget
 WORKDIR /app
 
 # Создание непривилегированного пользователя
