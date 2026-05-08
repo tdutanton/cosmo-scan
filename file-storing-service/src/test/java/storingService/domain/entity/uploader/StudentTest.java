@@ -26,7 +26,6 @@ public class StudentTest {
     student = new Student();
     student.setId(1L);
     student.setName("Ivan");
-    student.setSurname("Ivanov");
     assertTrue(student.correctFullName());
   }
 
@@ -34,7 +33,7 @@ public class StudentTest {
   void testIncorrectFullName() {
     student = new Student();
     student.setId(2L);
-    student.setName("Ivan");
+    student.setName("");
     assertFalse(student.correctFullName());
   }
 

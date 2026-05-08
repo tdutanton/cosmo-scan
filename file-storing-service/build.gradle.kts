@@ -42,6 +42,9 @@ dependencies {
     implementation("org.flywaydb:flyway-database-postgresql")
     testImplementation("com.h2database:h2")
     implementation("com.zaxxer:HikariCP")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.boot:spring-boot-starter-web")
 }
 
 jacoco {

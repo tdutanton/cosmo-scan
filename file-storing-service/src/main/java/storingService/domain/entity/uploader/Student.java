@@ -37,13 +37,9 @@ public class Student implements Uploader {
   @Column(name = "student_id")
   private Long id;
 
-  @Column(name = "student_name")
+  @Column(nullable = false, unique = true, name = "student_name")
   @EqualsAndHashCode.Include
   private String name;
-
-  @Column(name = "student_surname")
-  @EqualsAndHashCode.Include
-  private String surname;
 
   @Column(name = "created_at")
   private Instant createdAt;
@@ -52,13 +48,26 @@ public class Student implements Uploader {
   private List<Homework> homeworks = new ArrayList<>();
 
   public boolean correctFullName() {
-    return !Objects.toString(name, "").isBlank()
-        && !Objects.toString(surname, "").isBlank();
+    return !Objects.toString(name, "").isBlank();
   }
 
   @PrePersist
   protected void onCreate() {
     createdAt = Instant.now();
+  }
+
+  public Student(String name) {
+    this.name = name;
+  }
+
+  public void addHomework(Homework homework) {
+    homeworks.add(homework);
+    homework.setStudent(this);
+  }
+
+  public void deleteHomework(Homework homework) {
+    homeworks.remove(homework);
+    homework.setStudent(null);
   }
 
 }

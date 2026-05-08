@@ -35,7 +35,7 @@ public class Homework implements Readable {
   @Column(name = "file_id")
   private Long id;
 
-  @Column(name = "file_name")
+  @Column(nullable = false, name = "file_name")
   @EqualsAndHashCode.Include
   private String fileName;
 
@@ -44,7 +44,7 @@ public class Homework implements Readable {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "student_id")
-  private Uploader uploader;
+  private Student student;
 
   public boolean hasName() {
     return !Objects.toString(fileName, "").isBlank();
@@ -53,6 +53,10 @@ public class Homework implements Readable {
   @PrePersist
   protected void onCreate() {
     createdAt = Instant.now();
+  }
+
+  public Homework(String name) {
+    this.fileName = name;
   }
 
 }
