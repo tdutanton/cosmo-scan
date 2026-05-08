@@ -1,0 +1,205 @@
+{
+  "info": {
+    "name": "CosmoScan API",
+    "description": "Postman collection for CosmoScan microservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "API Gateway",
+      "item": [
+        {
+          "name": "Create Student (via Gateway)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "\"Ivan Ivanov\""},
+            "url": {"raw": "http://localhost:8081/api/students", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["api", "students"]}
+          }
+        },
+        {
+          "name": "Get All Students (via Gateway)",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8081/api/students", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["api", "students"]}
+          }
+        },
+        {
+          "name": "Get Student by ID (via Gateway)",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8081/api/students/1", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["api", "students", "1"]}
+          }
+        },
+        {
+          "name": "Upload File (via Gateway)",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {"key": "file", "type": "file", "src": []},
+                {"key": "studentName", "value": "Ivan Ivanov", "type": "text"}
+              ]
+            },
+            "url": {"raw": "http://localhost:8081/api/files/upload", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["api", "files", "upload"]}
+          }
+        },
+        {
+          "name": "Get All Homeworks (via Gateway)",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8081/api/files", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["api", "files"]}
+          }
+        },
+        {
+          "name": "Get Reports by Homework (via Gateway)",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8081/api/analysis/homeworks/1/reports", "protocol": "http", "host": ["localhost"], "port": "8081", "path": ["api", "analysis", "homeworks", "1", "reports"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "File Storing Service",
+      "item": [
+        {
+          "name": "Create Student",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "\"Ivan Ivanov\""},
+            "url": {"raw": "http://localhost:8080/api/students", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "students"]}
+          }
+        },
+        {
+          "name": "Get All Students",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8080/api/students", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "students"]}
+          }
+        },
+        {
+          "name": "Get Student by ID",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8080/api/students/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "students", "1"]}
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "url": {"raw": "http://localhost:8080/api/students/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "students", "1"]}
+          }
+        },
+        {
+          "name": "Upload File",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {"key": "file", "type": "file", "src": []},
+                {"key": "studentName", "value": "Ivan Ivanov", "type": "text"}
+              ]
+            },
+            "url": {"raw": "http://localhost:8080/api/files/upload", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "files", "upload"]}
+          }
+        },
+        {
+          "name": "Get All Homeworks",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8080/api/files", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "files"]}
+          }
+        },
+        {
+          "name": "Get Homework by ID",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8080/api/files/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "files", "1"]}
+          }
+        },
+        {
+          "name": "Download File",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8080/api/files/1/download", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "files", "1", "download"]}
+          }
+        },
+        {
+          "name": "Delete Homework",
+          "request": {
+            "method": "DELETE",
+            "url": {"raw": "http://localhost:8080/api/files/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "files", "1"]}
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8080/actuator/health", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["actuator", "health"]}
+          }
+        },
+        {
+          "name": "Swagger UI",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8080/swagger-ui.html", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["swagger-ui.html"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "File Analysis Service",
+      "item": [
+        {
+          "name": "Trigger Analysis",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"homeworkId\": 1, \"fileName\": \"test.pdf\"}"},
+            "url": {"raw": "http://localhost:8082/api/analysis/trigger", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["api", "analysis", "trigger"]}
+          }
+        },
+        {
+          "name": "Get All Reports",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8082/api/analysis/reports", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["api", "analysis", "reports"]}
+          }
+        },
+        {
+          "name": "Get Report by ID",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8082/api/analysis/reports/1", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["api", "analysis", "reports", "1"]}
+          }
+        },
+        {
+          "name": "Get Reports by Homework",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8082/api/analysis/homeworks/1/reports", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["api", "analysis", "homeworks", "1", "reports"]}
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8082/actuator/health", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["actuator", "health"]}
+          }
+        },
+        {
+          "name": "Swagger UI",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "http://localhost:8082/swagger-ui.html", "protocol": "http", "host": ["localhost"], "port": "8082", "path": ["swagger-ui.html"]}
+          }
+        }
+      ]
+    }
+  ]
+}

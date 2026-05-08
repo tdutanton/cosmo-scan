@@ -4,7 +4,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import storingService.domain.entity.readable.Homework;
+import storingService.dto.HomeworkResponse;
 import storingService.repository.FilesRepository;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,4 +36,23 @@ public class HomeworksService {
     filesRepository.save(homework);
   }
 
+  public List<HomeworkResponse> getAllHomeworks() {
+    return filesRepository.findAll().stream()
+        .map(HomeworkResponse::from)
+        .toList();
+  }
+
+  public HomeworkResponse getHomeworkById(Long id) {
+    return filesRepository.findById(id)
+        .map(HomeworkResponse::from)
+        .orElseThrow(() -> new IllegalArgumentException("Работа не найдена по id: " + id));
+  }
+
+  @Transactional
+  public void deleteHomeworkById(Long id) {
+    Homework homework = filesRepository.findById(id).orElseThrow(
+        () -> new IllegalArgumentException("Работа не найдена по id: " + id)
+    );
+    filesRepository.delete(homework);
+  }
 }

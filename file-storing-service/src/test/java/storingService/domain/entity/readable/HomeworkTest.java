@@ -3,37 +3,44 @@ package storingService.domain.entity.readable;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class HomeworkTest {
 
-  private Homework homework;
-
-  @BeforeEach
-  void setUp() {
-    System.out.println("Запуск нового теста");
-  }
-
-  @AfterEach
-  void tearDown() {
-    System.out.println("Тест завершен");
-  }
-
   @Test
   void existExtension() {
-    homework = new Homework();
+    Homework homework = new Homework();
     homework.setId(1L);
-    homework.setFileName("aaa.exe");
+    homework.setFileName("homework.pdf");
     assertTrue(homework.hasName());
   }
 
   @Test
   void noExtension() {
-    homework = new Homework();
+    Homework homework = new Homework();
     homework.setId(2L);
+    homework.setFileName("");
     assertFalse(homework.hasName());
   }
 
+  @Test
+  void nullFileName() {
+    Homework homework = new Homework();
+    homework.setId(3L);
+    homework.setFileName(null);
+    assertFalse(homework.hasName());
+  }
+
+  @Test
+  void testEquals() {
+    Homework h1 = new Homework();
+    h1.setId(1L);
+    h1.setFileName("test.pdf");
+
+    Homework h2 = new Homework();
+    h2.setId(1L);
+    h2.setFileName("test.pdf");
+
+    assertTrue(h1.equals(h2));
+  }
 }

@@ -5,6 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import storingService.domain.entity.readable.Homework;
 import storingService.domain.entity.uploader.Student;
+import storingService.dto.HomeworkResponse;
+import storingService.dto.StudentResponse;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +33,19 @@ public class CentralService {
     studentsService.deleteStudent(name);
   }
 
+  public List<StudentResponse> getAllStudents() {
+    return studentsService.getAllStudents();
+  }
+
+  public StudentResponse getStudentById(Long id) {
+    return studentsService.getStudentById(id);
+  }
+
+  @Transactional
+  public void deleteStudentById(Long id) {
+    studentsService.deleteStudentById(id);
+  }
+
   @Transactional
   public void addHomework(String studentName, String homeworkName) {
     Student student = safetyGetStudentFromRepo(studentName);
@@ -37,5 +54,21 @@ public class CentralService {
     homeworksService.saveHomework(homework);
   }
 
+  @Transactional
+  public void saveHomework(Homework homework) {
+    homeworksService.saveHomework(homework);
+  }
 
+  public List<HomeworkResponse> getAllHomeworks() {
+    return homeworksService.getAllHomeworks();
+  }
+
+  public HomeworkResponse getHomeworkById(Long id) {
+    return homeworksService.getHomeworkById(id);
+  }
+
+  @Transactional
+  public void deleteHomeworkById(Long id) {
+    homeworksService.deleteHomeworkById(id);
+  }
 }
