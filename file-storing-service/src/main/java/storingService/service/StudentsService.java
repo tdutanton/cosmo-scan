@@ -25,9 +25,17 @@ public class StudentsService {
     throw new IllegalArgumentException("Некорректное имя студента: " + name);
   }
 
+  @Transactional
+  public Student safetyGetStudentFromRepo(String name) {
+    return studentsRepository.findByName(name)
+        .orElseGet(() -> createStudent(name));
+  }
+
+  @Transactional
   public void deleteStudent(String name) {
     Student student = studentsRepository.findByName(name).orElseThrow(
         () -> new IllegalArgumentException("Студент не найден: " + name)
     );
+    studentsRepository.delete(student);
   }
 }

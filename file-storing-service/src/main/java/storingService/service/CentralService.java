@@ -10,6 +10,7 @@ import storingService.domain.entity.uploader.Student;
 @RequiredArgsConstructor
 @Transactional
 public class CentralService {
+
   private final HomeworksService homeworksService;
   private final StudentsService studentsService;
 
@@ -19,13 +20,18 @@ public class CentralService {
   }
 
   @Transactional
+  public Student safetyGetStudentFromRepo(String name) {
+    return studentsService.safetyGetStudentFromRepo(name);
+  }
+
+  @Transactional
   public void deleteStudent(String name) {
     studentsService.deleteStudent(name);
   }
 
   @Transactional
   public void addHomework(String studentName, String homeworkName) {
-    Student student = createStudent(studentName);
+    Student student = safetyGetStudentFromRepo(studentName);
     Homework homework = homeworksService.createHomework(homeworkName);
     homework.setStudent(student);
     homeworksService.saveHomework(homework);
