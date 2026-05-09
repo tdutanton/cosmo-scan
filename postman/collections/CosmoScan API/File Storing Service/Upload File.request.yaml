@@ -1,0 +1,13 @@
+$kind: http-request
+url: http://localhost:8080/api/files/upload
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: file
+      src: []
+    - type: text
+      key: studentName
+      value: Ivan Ivanov
+order: 5000

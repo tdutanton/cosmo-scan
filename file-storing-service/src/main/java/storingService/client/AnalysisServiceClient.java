@@ -29,6 +29,7 @@ public class AnalysisServiceClient {
     }
   }
 
-  private record AnalysisRequest(Long homeworkId, String fileName) {
+  record AnalysisRequest(Long homeworkId, String fileName) {
+
   }
 }

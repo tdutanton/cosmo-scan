@@ -1,0 +1,9 @@
+$kind: http-request
+url: http://localhost:8081/api/students
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '"Ivan Ivanov"'
+order: 1000

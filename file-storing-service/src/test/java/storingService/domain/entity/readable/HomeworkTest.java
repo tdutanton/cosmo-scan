@@ -1,5 +1,6 @@
 package storingService.domain.entity.readable;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -41,6 +42,12 @@ public class HomeworkTest {
     h2.setId(1L);
     h2.setFileName("test.pdf");
 
-    assertTrue(h1.equals(h2));
+    assertEquals(h1, h2);
+  }
+
+  @Test
+  void ctorWArg() {
+    Homework homework = new Homework("name");
+    assertEquals("name", homework.getFileName());
   }
 }
