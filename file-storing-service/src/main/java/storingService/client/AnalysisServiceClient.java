@@ -25,7 +25,8 @@ public class AnalysisServiceClient {
           .toBodilessEntity();
       log.info("Запрос на анализ отправлен: homeworkId={}, fileName={}", homeworkId, fileName);
     } catch (Exception e) {
-      log.error("Не удалось отправить запрос на анализ: {}", e.getMessage());
+      throw new RuntimeException("Не удалось отправить запрос на анализ: " + e.getMessage()
+          + ". Проверьте работу сервиса-получателя запроса.");
     }
   }
 
