@@ -1,0 +1,44 @@
+server:
+  port: ${GATEWAY_PORT:8081}
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: file-storing-service
+          uri: ${STORING_SERVICE_URL:http://file-storing:8080}
+          predicates:
+            - Path=/api/students/**, /api/files/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: storingServiceCircuitBreaker
+                fallbackUri: forward:/fallback/storing
+
+        - id: file-analysis-service
+          uri: ${ANALYSIS_SERVICE_URL:http://analysis-service:8082}
+          predicates:
+            - Path=/api/analysis/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: analysisServiceCircuitBreaker
+                fallbackUri: forward:/fallback/analysis
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,gateway"
+  endpoint:
+    gateway:
+      enabled: true
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

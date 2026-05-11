@@ -1,0 +1,10 @@
+$kind: http-request
+name: Create Student
+url: http://localhost:8080/api/students
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '"Student Studentovich"'
+order: 1000

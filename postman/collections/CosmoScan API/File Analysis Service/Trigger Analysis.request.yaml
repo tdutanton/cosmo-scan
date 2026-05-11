@@ -1,0 +1,9 @@
+$kind: http-request
+url: http://localhost:8082/api/analysis/trigger
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"homeworkId": 1, "fileName": "test.pdf"}'
+order: 1000
