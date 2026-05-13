@@ -45,6 +45,8 @@ dependencies {
     implementation("com.zaxxer:HikariCP")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.json:json:20240303")
+    implementation("commons-io:commons-io:2.16.1")
 }
 
 jacoco {
