@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +43,8 @@ public class AnalysisService {
     }
 
     if (fileSize > MAX_FILE_SIZE) {
-      issues.add("Превышен лимит размера файла: " + fileSize + " байт (макс. " + MAX_FILE_SIZE + " байт)");
+      issues.add(
+          "Превышен лимит размера файла: " + fileSize + " байт (макс. " + MAX_FILE_SIZE + " байт)");
       status = "требуется доработка";
     }
 
@@ -59,7 +62,7 @@ public class AnalysisService {
     report.setIssues(issues);
 
     report = reportRepository.save(report);
-    log.info("Создан отчёт: homeworkId={}, status={}, issues={}", homeworkId, status, issues);
+    log.info("Создан отчет: homeworkId={}, status={}, issues={}", homeworkId, status, issues);
 
     return ReportResponse.from(report);
   }
@@ -73,13 +76,37 @@ public class AnalysisService {
   public ReportResponse getReportById(Long reportId) {
     return reportRepository.findById(reportId)
         .map(ReportResponse::from)
-        .orElseThrow(() -> new IllegalArgumentException("Отчёт не найден: " + reportId));
+        .orElseThrow(() -> new IllegalArgumentException("Отчет не найден: " + reportId));
   }
 
   public List<ReportResponse> getAllReports() {
     return reportRepository.findAll().stream()
         .map(ReportResponse::from)
         .toList();
+  }
+
+  public Optional<Path> firstFile() {
+    ReportResponse response = getReportById(1L);
+    Path filePath = Path.of(storagePath).resolve(response.fileName())
+        .normalize();
+    if (Files.exists(filePath)) {
+      return Optional.of(filePath);
+    }
+    return Optional.empty();
+  }
+
+  public Optional<Path> randomTxtFile() {
+    List<ReportResponse> txtFiles = getAllReports().stream()
+        .filter(r -> r.fileName() != null)
+        .filter(r -> getExtension(r.fileName()).equals(".txt"))
+        .filter(r -> "принято".equals(r.status()))
+        .toList();
+    if (txtFiles.isEmpty()) {
+      return Optional.empty();
+    }
+    ReportResponse selected = txtFiles.get(new Random().nextInt(txtFiles.size()));
+    Path filePath = Path.of(storagePath).resolve(selected.fileName()).normalize();
+    return Files.exists(filePath) ? Optional.of(filePath) : Optional.empty();
   }
 
   private String getExtension(String fileName) {
