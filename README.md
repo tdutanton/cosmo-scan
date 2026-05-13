@@ -113,6 +113,13 @@ Analysis: http://localhost:8082/swagger-ui.html
 
 Примеры файлов для загрузки лежат в папке sample-files.
 
+Для получения облака слов необходимо отправить POST-запрос - лучше через **Swagger** на
+/api/analysis/word-clod.
+
+**ВНИМАНИЕ!**  
+**Если ответ от quickchart не приходит очень долго, можно попробовать обратиться к сервису
+через VPN.**
+
 ## Отказоустойчивость
 
 CircuitBreaker и fallbackUri в **API Gateway** защищают от каскадных сбоев.
