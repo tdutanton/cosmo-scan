@@ -21,7 +21,7 @@ public class WordCloudClient {
   private static final RestClient restClient = RestClient.builder()
       .baseUrl(API_URL)
       .defaultHeader("Content-Type", "application/json")
-      .requestFactory(new SimpleClientHttpRequestFactory())  // ✅ Более совместимый клиент
+      .requestFactory(new SimpleClientHttpRequestFactory())
       .build();
 
   public byte[] generateWordCloud(String filePath) {
